@@ -1,28 +1,5 @@
-async function resetFogFromUnactivatedScene(scene){
-	console.log(scene.data._id)
-    const response = await SocketInterface.dispatch("modifyDocument", {
-      type: "FogExploration",
-      action: "delete",
-      data: {scene: scene.data._id},
-      options: {reset: true}
-    });
-    return this._onResetFogFromUnactivatedScene(response.result);
 
-}
-async function _onResetFogFromUnactivatedScene(resetData) {
-	console.log(resetData)
-	if(resetData.scene == canvas.scene.data._id){
-		
-		canvas.sight._fogUpdated = false;
-		canvas.draw();
-	}else{
-
-	}
-    // ui.notifications.info(`Fog of War exploration progress was reset for this Scene`);
-    // this._fogUpdated = false;
-    // canvas.draw();
-  }
-//Credit to Everybody Look Here for code to add to Scene Nav
+//Credit to Winks' Everybody Look Here for the code to add to Scene Nav
 function getContextOption2(idField) {
     return {
         name: "Reset Doors & Fog",
@@ -30,18 +7,18 @@ function getContextOption2(idField) {
         condition: li => game.user.isGM,
         callback: li => {
             let scene = game.scenes.get(li.data(idField));      
-           
             resetDoorsAndFog(scene)
-           
-            //resetFogFromUnactivatedScene(scene);
         }
     };
 }
+//Just a parent function for both sub functions. Kept functionality separate in case I want to detangle them later.
 async function resetDoorsAndFog(scene){
 	let isCurrentScene = scene.data._id == canvas.scene.data._id;
 	await resetDoors(isCurrentScene,scene.data._id);
 	await resetFog(isCurrentScene,scene.data._id);
 }
+/******** RESET DOOR **************
+**********************************/
 async function resetDoors(isCurrentScene,id=null){
 	if(isCurrentScene){
 		await canvas.walls.doors.forEach((item)=> item.update({ds:0}));
@@ -49,7 +26,10 @@ async function resetDoors(isCurrentScene,id=null){
 		console.log(game.scenes.get(id).data.walls.filter((item)=> item.door != 0))
 		await game.scenes.get(id).data.walls.filter((item)=> item.door != 0).forEach((x) => x.ds = 0);
 	}
+	ui.notifications.info(`Doors have been shut.`);
 }
+/******** RESET FOG **************
+**********************************/
 async function resetFog(isCurrentScene,id=null){
 	if(isCurrentScene){
 		canvas.sight.resetFog();
@@ -60,7 +40,9 @@ async function resetFog(isCurrentScene,id=null){
 	      data: {scene:id},
 	      options: {reset: true}
 	    });
+		ui.notifications.info(`Fog of War exploration progress was reset.`);
 	}
+	
 }
 //Adds menu option to Scene Nav and Directory
 Hooks.on("getSceneNavigationContext", (html, contextOptions) => {
@@ -74,14 +56,12 @@ Hooks.on("getSceneDirectoryEntryContext", (html, contextOptions) => {
 //Adds Shut All Doors button to Walls Control Layer
 Hooks.on("getSceneControlButtons", function(controls){
 		
-	controls[4].tools.push({
+	controls[4].tools.splice(controls[4].tools.length-2,0,{
       name: "close",
       title: "Close All Doors",
       icon: "fas fa-door-closed",
       onClick: () => {
-      	
-			resetDoors(true);
-		
+		resetDoors(true);
 	  },
       button: true
     })
