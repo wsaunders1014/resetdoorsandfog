@@ -9,5 +9,6 @@
   	"scripts/shut-doors.js"
   ],
   "url":"https://github.com/wsaunders1014/resetdoorsandfog",
-  "manifest":"https://raw.githubusercontent.com/wsaunders1014/resetdoorsandfog/master/module.json"
+  "manifest":"https://raw.githubusercontent.com/wsaunders1014/resetdoorsandfog/master/module.json",
+  "download":"https://github.com/wsaunders1014/resetdoorsandfog/archive/master.zip"
 }
