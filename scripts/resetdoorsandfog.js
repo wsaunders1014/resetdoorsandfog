@@ -82,18 +82,3 @@ Hooks.on("getSceneControlButtons", function(controls){
 
 
 /*********************************************************************************/
-
-
-
-
-Hooks.once('init', ()=>{
-    game.settings.register('resetdoorsandfog', 'enabled', {
-      name: "rsdaf.enable-s",
-      hint: "rsdaf.enable-l",
-      scope: "world",
-      config: true,
-      default: true,
-      type: Boolean,
-      onChange: x => window.location.reload()
-    });
-});
