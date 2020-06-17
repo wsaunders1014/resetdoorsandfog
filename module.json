@@ -1,21 +1,14 @@
 {
-  "name": "ResetDoorsAndFog",
-  "title": "Reset Doors and Fog",
+  "name": "resetdoorsandfog",
+  "title": "Reset Doors And Fog",
   "description": "Adds button to wall controls to shut all doors in current scene. Adds menu option to Scene Navigation and Directory to Reset Doors and Fog to prepare a map back to it's intial status.",
   "authors": [{"name":"Will Saunders","email":"willsaunders1014@gmail.com" }],
   "version": "1.0.1",
   "minimumCoreVersion": "0.6.0",
   "compatibleCoreVersion":"0.6.2",
   "scripts": [
-  	"scripts/shut-doors.js"
+  	"scripts/resetdoorsandfog.js"
   ],
-  "languages": [
-    {
-      "lang": "en",
-      "name": "English",
-      "path": "lang/en.json"
-    }
-   ],
   "url":"https://github.com/wsaunders1014/resetdoorsandfog",
   "manifest":"https://raw.githubusercontent.com/wsaunders1014/resetdoorsandfog/master/module.json",
   "download":"https://github.com/wsaunders1014/resetdoorsandfog/archive/master.zip"
