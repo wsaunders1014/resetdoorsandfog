@@ -1,11 +1,11 @@
 {
     "name": "resetdoorsandfog-remastered",
-    "title": "Reset Doors And Fog - Remaster",
+    "title": "Reset Doors And Fog - Remastered",
     "description": "Adds button to wall controls to shut all doors in current scene. Adds menu option to Scene Navigation and Directory to Reset Doors and Fog to prepare a map back to it's intial status.",
-    "authors": [{"name":"Jacob Martinez-Troxel, Lucas Lepinski","email":"jacobmtroxel@gmail.com" }],
-    "version": "1.0.0",
+    "author": "Yacklebeam, ZeltorDaeon",
+    "version": "1.0.1",
     "minimumCoreVersion": "0.6.0",
-    "compatibleCoreVersion":"0.6.2",
+    "compatibleCoreVersion":"0.7.9",
     "scripts": [
         "scripts/resetdoorsandfog.js"
     ],
