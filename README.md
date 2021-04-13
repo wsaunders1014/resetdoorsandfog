@@ -7,6 +7,18 @@ Adds a button to the Walls Menu to Shut all doors in the current scene. Also add
 Remastered changes the functionality from closing ALL doors to closing ONLY opened doors.
 Doors that are currently locked remain locked, and are not closed.
 
+## Installation
+
+It's always easiest to install modules from the in game add-on browser.
+
+To install this module manually:
+1.  Inside the Foundry "Configuration and Setup" screen, click "Add-on Modules"
+2.  Click "Install Module"
+3.  In the "Manifest URL" field, paste the following url:
+`https://raw.githubusercontent.com/wsaunders1014/resetdoorsandfog/main/src/module.json`
+4.  Click 'Install' and wait for installation to complete
+5.  Don't forget to enable the module in game using the "Manage Module" button
+
 ## Issues
 
 Any issues, bugs, or feature requests are always welcome to be reported directly to the [Issue Tracker](https://github.com/wsaunders1014/resetdoorsandfog/issues ), or using the [Bug Reporter Module](https://foundryvtt.com/packages/bug-reporter/).
