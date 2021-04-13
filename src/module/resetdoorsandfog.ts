@@ -6,9 +6,28 @@ RESET DOORS AND FOG BUTTONS
 
 
  ******************************************************************************************/
+
+export const MODULE_NAME = 'resetdoorsandfog';
+
+/**
+ * Because typescript doesn't know when in the lifecycle of foundry your code runs, we have to assume that the
+ * canvas is potentially not yet initialized, so it's typed as declare let canvas: Canvas | {ready: false}.
+ * That's why you get errors when you try to access properties on canvas other than ready.
+ * In order to get around that, you need to type guard canvas.
+ * Also be aware that this will become even more important in 0.8.x because no canvas mode is being introduced there.
+ * So you will need to deal with the fact that there might not be an initialized canvas at any point in time.
+ * @returns
+ */
+export function getCanvas(): Canvas {
+	if (!(canvas instanceof Canvas) || !canvas.ready) {
+		throw new Error("Canvas Is Not Initialized");
+	}
+	return canvas;
+}
+
 //Just a parent function for both sub functions. Kept functionality separate in case I want to detangle them later.
 async function resetDoorsAndFog(scene){
-    let isCurrentScene = scene.data._id == canvas.scene.data._id;
+    let isCurrentScene = scene.data._id == getCanvas().scene.data._id;
     await resetDoors(isCurrentScene,scene.data._id);
     await resetFog(isCurrentScene,scene.data._id);
 }
@@ -16,7 +35,7 @@ async function resetDoorsAndFog(scene){
 
 async function resetDoors(isCurrentScene,id=null){
     if(isCurrentScene){
-        await canvas.walls.doors.filter((item) => item.data.ds == 1).forEach((item)=> item.update({ds:0}));
+        await getCanvas().walls.doors.filter((item) => item.data.ds == 1).forEach((item)=> item.update({ds:0}));
     }else{
         console.log(game.scenes.get(id).data.walls.filter((item)=> item.door != 0))
         await game.scenes.get(id).data.walls.filter((item)=> item.door != 0).forEach((x) => x.ds = 0);
@@ -30,15 +49,18 @@ async function resetDoors(isCurrentScene,id=null){
 
 async function resetFog(isCurrentScene,id=null){
     if(isCurrentScene){
-        canvas.sight.resetFog();
+      getCanvas().sight.resetFog();
     }else{
-        const response = await SocketInterface.dispatch("modifyDocument", {
-            type: "FogExploration",
-            action: "delete",
-            data: {scene:id},
-            options: {reset: true}
-        });
-        ui.notifications.info(`Fog of War exploration progress was reset.`);
+      //@ts-ignore
+      const response = await SocketInterface.dispatch("modifyDocument", {
+          type: "FogExploration",
+          action: "delete",
+          data: {scene:id},
+          options: {reset: true},
+          //parentId: "",
+          //parentType: ""
+      });
+      ui.notifications.info(`Fog of War exploration progress was reset.`);
     }
 
 }
@@ -55,6 +77,11 @@ function getContextOption2(idField) {
         }
     };
 }
+
+// ===============================================
+// HOOKS
+// ===============================================
+
 //Adds menu option to Scene Nav and Directory
 Hooks.on("getSceneNavigationContext", (html, contextOptions) => {
     contextOptions.push(getContextOption2('sceneId'));

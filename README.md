@@ -6,3 +6,4 @@ Adds a button to the Walls Menu to Shut all doors in the current scene. Also add
 
 Remastered changes the functionality from closing ALL doors to closing ONLY opened doors.
 Doors that are currently locked remain locked, and are not closed.
+
