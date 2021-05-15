@@ -1,0 +1,72 @@
+{
+  "name": "resetdoorsandfog",
+  "title": "Reset Doors And Fog - Remastered",
+  "description": "Adds button to wall controls to shut all doors in current scene. Adds menu option to Scene Navigation and Directory to Reset Doors and Fog to prepare a map back to it's intial status.",
+  "author": "wsaunders1014, wsaunders1014, ZeltorDaeon, p4535992",
+  "authors": [
+    {
+      "name":"Will Saunders",
+      "email":"willsaunders1014@gmail.com"
+    },
+    {
+      "name":"wsaunders1014",
+      "email":""
+    },
+    {
+      "name":"ZeltorDaeon",
+      "email":""
+    },
+    {
+      "name":"p4535992",
+      "email":""
+    }
+  ],
+  "version": "1.0.2",
+  "type": "module",
+  "socket": true,
+  "includes": [
+    "./assets/**",
+    "./lang/**",
+    "./scripts/**",
+    "./styles/**",
+    "./templates/**",
+    "./module.json",
+    "./README.md",
+    "./icons/**",
+    "./packs/**"
+  ],
+  "media": [
+    {
+      "type": "icon",
+      "location": ""
+    },
+    {
+      "type": "cover",
+      "location": ""
+    },
+    {
+      "type": "screenshot",
+      "location": ""
+    }
+  ],
+  "languages": [
+
+  ],
+  "scripts": [
+
+  ],
+  "esmodules": [
+    "module/resetdoorsandfog.js"
+  ],
+  "styles": [
+
+  ],
+  "url": "https://github.com/wsaunders1014/resetdoorsandfog",
+  "manifest": "https://raw.githubusercontent.com/wsaunders1014/resetdoorsandfog/master/src/module.json",
+  "download": "https://raw.githubusercontent.com/wsaunders1014/resetdoorsandfog/master/package/resetdoorsandfog-v1.0.2.zip",
+  "minimumCoreVersion": "0.7.6",
+  "compatibleCoreVersion": "0.7.9",
+  "changelog": "https://raw.githubusercontent.com/wsaunders1014/resetdoorsandfog/master/changelog.md",
+  "bugs": "https://github.com/wsaunders1014/resetdoorsandfog/issues",
+  "allowBugReporter": true
+}
