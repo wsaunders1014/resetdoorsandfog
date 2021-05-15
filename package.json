@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "health-monitor",
-  "version": "1.1.2",
+  "name": "resetdoorsandfog",
+  "version": "1.0.2",
   "description": "",
   "scripts": {
     "package": "gulp package",
